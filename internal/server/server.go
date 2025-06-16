@@ -4,11 +4,15 @@ import (
 	"context"
 	"encoding/json"
 	"io"
+	"os"
 	"sync"
+	"time"
 
 	"github.com/sirupsen/logrus"
 	"github.com/sourcegraph/jsonrpc2"
 
+	"github.com/BeehiveInnovations/zen-mcp-server-go/internal/conversation"
+	"github.com/BeehiveInnovations/zen-mcp-server-go/internal/providers"
 	"github.com/BeehiveInnovations/zen-mcp-server-go/internal/tools"
 )
 
@@ -31,6 +35,14 @@ type Server struct {
 func NewServer() *Server {
 	disp := NewDispatcher()
 	disp.Register(&tools.GetVersionTool{})
+
+	// configure provider from environment
+	if key := os.Getenv("OPENAI_API_KEY"); key != "" {
+		providers.Register(providers.NewOpenAIProvider(key))
+		store := conversation.NewStore(os.Getenv("REDIS_URL"), time.Hour)
+		disp.Register(&tools.ChatTool{ProviderName: "openai", Store: store})
+	}
+
 	return &Server{dispatcher: disp}
 }
 
