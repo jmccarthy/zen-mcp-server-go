@@ -1,0 +1,11 @@
+module github.com/BeehiveInnovations/zen-mcp-server-go
+
+go 1.21
+
+require (
+	github.com/google/uuid v1.6.0
+	github.com/sirupsen/logrus v1.9.3
+	github.com/sourcegraph/jsonrpc2 v0.2.1
+)
+
+require golang.org/x/sys v0.0.0-20220715151400-c0bba94af5f8 // indirect
