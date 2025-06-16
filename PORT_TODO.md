@@ -60,10 +60,10 @@ This document outlines the major tasks required to port the existing Python-base
     - Provide example configuration files analogous to `claude_config_example.json`.
 
 ## 3. Migration Steps
-1. Start by scaffolding the Go module and basic JSON‑RPC server.
-2. Incrementally port each tool, beginning with simpler ones like `get_version` and `chat`.
-3. Implement provider clients and plug them into the tool execution flow.
-4. Add Redis conversation support and file utilities.
+1. ~~Start by scaffolding the Go module and basic JSON‑RPC server.~~
+2. ~~Incrementally port each tool, beginning with simpler ones like `get_version` and `chat`.~~
+3. ~~Implement provider clients and plug them into the tool execution flow.~~
+4. ~~Add Redis conversation support and file utilities.~~
 5. Recreate logging and configuration logic.
 6. Gradually replace Python tests with Go tests to confirm parity.
 7. Once feature complete, deprecate the Python entry point and document how to run the Go version.
